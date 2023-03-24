@@ -16,6 +16,11 @@
     *{margin: 0;padding: 0; box-sizing: border-box;font-family: 'Josefin Sans', sans-serif;}
     p{
       font-size: 0.75rem;
+      color: black;
+    }
+
+    .fonttogglemode{
+      color: white;
     }
     .root{
 
@@ -39,11 +44,27 @@
       --Fontsize: 18px
     }
 
-    body{
+    .whitemode_bd{
       background: rgb(248, 244, 244);
     }
 
-    .bg{
+    .darkmode_bd{
+      background:hsl(235, 21%, 11%);;
+    }
+
+    .whitemode_bgim{
+      display: flex;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      right: 0px;
+      z-index: -1;
+      width: 100%;
+      height: 43%;
+    }
+
+    .darkmode_bgim{
+      display: none;
       position: absolute;
       left: 0px;
       top: 0px;
@@ -75,12 +96,18 @@
       color: white;
     }
 
-    .whitebox{
-      background: white;
-      border: solid green 1px;
+    .whitebox, .darkbox{
       padding: 3% 5%;
       margin-top: 0.5%;
       border-radius: 5px;
+    }
+
+    .whitebox{
+      background: white;
+    }
+
+    .darkbox{
+      background: hsl(235, 24%, 19%);
     }
 
     .flex{
@@ -111,10 +138,23 @@
       cursor: pointer;
     }
 
+    input{
+      background: white;
+      color: black;
+    }
+
+    input, .inputtogglemode, input:focus, .inputtogglemode:focus{
+      border: none;
+      outline: none;
+    }
+
+    .inputtogglemode{
+      background: hsl(235, 24%, 19%);
+      color: white;
+    }
+
     .text-input{
       width: 90%;
-      border: solid 1px red;
-
       padding: 2% 0 2% 2%;
     }
 
@@ -161,15 +201,26 @@
       color: red;
     }
 
+    .sun{
+      display: none;
+    }
+
+    .moon{
+      display: flex;
+    }
+
+  
   </style>
 </head>
-<body>
-  <img class = "bg" src="./images/bg-desktop-light.jpg" alt="">
+<body class = "whitemode_bd">
+  <img class = "whitemode_bgim" src="./images/bg-desktop-light.jpg" alt="">
+  <img class = "darkmode_bgim" src="./images/bg-desktop-dark.jpg" alt="">
   <div class="container">
     <div class="todo-box">  
       <header>
         <h1>Todo</h1>
-        <img src="./images/icon-moon.svg" alt="">
+        <img class="moon" src="./images/icon-moon.svg" alt="">
+        <img class="sun" src="./images/icon-sun.svg" alt="">
       </header>
 
       <div class="flex whitebox">

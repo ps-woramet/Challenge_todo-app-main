@@ -1,3 +1,38 @@
+let mode = "white";
+
+const sun = document.querySelector(".sun");
+const moon = document.querySelector(".moon");
+const whitemode_bgim = document.querySelector(".whitemode_bgim");
+const darkmode_bgim = document.querySelector(".darkmode_bgim");
+
+moon.addEventListener("click", function(){
+    mode = "dark";
+    moon.style.display = "none";
+    sun.style.display = "flex";
+    whitemode_bgim.style.display = "none";
+    darkmode_bgim.style.display = "flex";
+    document.querySelectorAll('.whitebox').forEach(e => e.classList.replace('whitebox', 'darkbox'));
+    document.querySelectorAll('.whitemode_bd').forEach(e => e.classList.replace('whitemode_bd', 'darkmode_bd'));
+    const p_tag = document.querySelectorAll('p');
+    p_tag.forEach(e => e.classList.toggle("fonttogglemode"));
+    const input_tag = document.querySelectorAll('input');
+    input_tag.forEach(e => e.classList.toggle("inputtogglemode"));
+});
+
+sun.addEventListener("click", function(){
+    mode = "white";
+    sun.style.display = "none";
+    moon.style.display = "flex";
+    whitemode_bgim.style.display = "flex";
+    darkmode_bgim.style.display = "none";
+    document.querySelectorAll('.darkbox').forEach(e => e.classList.replace('darkbox', 'whitebox'));
+    document.querySelectorAll('.darkmode_bd').forEach(e => e.classList.replace('darkmode_bd', 'whitemode_bd'));
+    const p_tag = document.querySelectorAll('p');
+    p_tag.forEach(e => e.classList.toggle("fonttogglemode"));
+    const input_tag = document.querySelectorAll('input');
+    input_tag.forEach(e => e.classList.toggle("inputtogglemode"));
+});
+
 const checkbox0 = document.querySelector("#checkbox0");
 const emptybox0 = document.querySelector("#emptybox0");
 const textbox0 = document.querySelector("#textbox0");
@@ -33,7 +68,12 @@ textbox0.addEventListener("keypress", function(enter){
         todolist.push({id : (todolist.length+1).toString(), text_value : textbox0.value, complete_value : complete_todo});
         const task = document.createElement('div');
         task.classList.add("flex");
-        task.classList.add("whitebox");
+        if (mode == "white"){
+            task.classList.add("whitebox");
+        }
+        else if (mode == "dark"){
+            task.classList.add("darkbox");
+        };
         task.setAttribute("id", "task" + todolist.length.toString());
         list.appendChild(task)
 
@@ -49,6 +89,9 @@ textbox0.addEventListener("keypress", function(enter){
         task.appendChild(e2)
 
         const e3 = document.createElement('p');
+        if (mode == "dark"){
+            e3.classList.add("fonttogglemode");
+        };
         e3.innerText = textbox0.value;
         task.appendChild(e3)
 
@@ -154,8 +197,7 @@ clear.addEventListener("click", function(){
         emptyid.id = "emptybox" + num;
         todolist[i].id = parseInt(i)+1;
     };
-
     number_item();
     check_menu();
-
 });
+
