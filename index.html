@@ -11,8 +11,9 @@
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
-    .attribution { font-size: 11px; text-align: center;position: absolute;width: 100%;margin: 0 auto;margin-top: 20px;}
-    .attribution a { color: hsl(228, 45%, 44%); }
+    .attribution { font-size: 11px; text-align: center;position: absolute;width: 100%;margin: 0 auto;margin-top: calc(90px + 5%); color: black;}
+    .attribution a { color: hsl(228, 45%, 44%);}
+    .attribution .fonttogglemode{color: white;}
     *{margin: 0;padding: 0; box-sizing: border-box;font-family: 'Josefin Sans', sans-serif;}
     p{
       font-size: 0.75rem;
@@ -78,8 +79,8 @@
     .container{
       z-index: 999;
       position: relative;
-      width: 50%;
-      border: solid red 1px;
+      width: 60%;
+      border: solid blue 1px;
       margin: 0 auto;
       margin-top: 10%;
     }
@@ -209,7 +210,22 @@
       display: flex;
     }
 
-  
+    @media only screen and (max-width: 600px) {
+        footer .menu{
+          position: absolute;
+          margin-top: calc(90px + 5%);
+          width: 100%;
+          /* top: 50%; */
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding-left: 20%;
+          padding-right: 20%;
+          gap: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+    }
   </style>
 </head>
 <body class = "whitemode_bd">
@@ -233,7 +249,7 @@
 
       <footer class="flex whitebox">
         <p id = "number-item">0 items left</p>
-        <div class="menu">
+        <div class="menu whitebox">
             <p id = "all">All</p>
             <p id = "active">Active</p> 
             <p id = "completed">Completed</p>

@@ -17,6 +17,8 @@ moon.addEventListener("click", function(){
     p_tag.forEach(e => e.classList.toggle("fonttogglemode"));
     const input_tag = document.querySelectorAll('input');
     input_tag.forEach(e => e.classList.toggle("inputtogglemode"));
+    const attribution = document.querySelector(".attribution");
+    attribution.classList.toggle("fonttogglemode");
 });
 
 sun.addEventListener("click", function(){
@@ -31,6 +33,8 @@ sun.addEventListener("click", function(){
     p_tag.forEach(e => e.classList.toggle("fonttogglemode"));
     const input_tag = document.querySelectorAll('input');
     input_tag.forEach(e => e.classList.toggle("inputtogglemode"));
+    const attribution = document.querySelector(".attribution");
+    attribution.classList.toggle("fonttogglemode");
 });
 
 const checkbox0 = document.querySelector("#checkbox0");
@@ -65,6 +69,7 @@ const todolist_filter = [];
 
 textbox0.addEventListener("keypress", function(enter){
     if (textbox0.value != "" && enter.key === 'Enter'){
+        console.log(textbox0);
         todolist.push({id : (todolist.length+1).toString(), text_value : textbox0.value, complete_value : complete_todo});
         const task = document.createElement('div');
         task.classList.add("flex");
