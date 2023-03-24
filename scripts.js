@@ -34,7 +34,6 @@ textbox0.addEventListener("keypress", function(enter){
         const task = document.createElement('div');
         task.classList.add("flex");
         task.classList.add("whitebox");
-        task.classList.add("togglebox");
         task.setAttribute("id", "task" + todolist.length.toString());
         list.appendChild(task)
 
