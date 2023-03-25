@@ -49,14 +49,12 @@ let complete_todo = false;
 const btn = document.querySelector(".btn");
 
 emptybox0.addEventListener("click", function(){
-    console.log("hell111o");
     checkbox0.style.display = "flex";
     emptybox0.style.display = "none";
     complete_todo = true;
 });
 
 checkbox0.addEventListener("click", function(){
-    console.log("hell111o");
     emptybox0.style.display = "flex";
     checkbox0.style.display = "none";
     complete_todo = false;
@@ -69,7 +67,6 @@ const todolist_filter = [];
 
 textbox0.addEventListener("keypress", function(enter){
     if (textbox0.value != "" && enter.key === 'Enter'){
-        console.log(textbox0);
         todolist.push({id : (todolist.length+1).toString(), text_value : textbox0.value, complete_value : complete_todo});
         const task = document.createElement('div');
         task.classList.add("flex");
@@ -97,14 +94,35 @@ textbox0.addEventListener("keypress", function(enter){
         if (mode == "dark"){
             e3.classList.add("fonttogglemode");
         };
+        e3.classList.add("p-line");
+        if (complete_todo == true){
+            e3.classList.add("toggle");
+        }
+        e3.setAttribute("id", "p-line" + todolist.length.toString());
         e3.innerText = textbox0.value;
         task.appendChild(e3)
+
+        const textboxclass = document.querySelector("#textbox0");
+        textboxclass.value = "";
+
+        const e4 = document.createElement('img');
+        e4.src = "./images/icon-cross.svg";
+        e4.classList.add("cross");
+        if (mode == "white"){
+            e4.classList.add("whitecross");
+        }
+        else if (mode == "dark"){
+            e4.classList.add("darkcross");
+        };
+        e4.setAttribute("id", "cross" + todolist.length.toString());
+        task.appendChild(e4)
 
         complete_todo ? e1.style.display  = "none" : e2.style.display = "none";
         
         e1.addEventListener("click", function(){
             e2.style.display = "flex";
             e1.style.display = "none";
+            e3.classList.toggle("toggle");
             const id_number = this.id.substring(this.id.length - 1)
             todolist[id_number-1].complete_value = true;
             check_menu();
@@ -113,10 +131,53 @@ textbox0.addEventListener("keypress", function(enter){
         e2.addEventListener("click", function(){
             e1.style.display = "flex";
             e2.style.display = "none";
+            e3.classList.toggle("toggle");
             const id_number = this.id.substring(this.id.length - 1)
             todolist[id_number-1].complete_value = false;
             check_menu();
         });
+
+        e3.addEventListener("click", function(){
+            const id_number = this.id.substring(this.id.length - 1)
+            if (todolist[id_number-1].complete_value == true){
+                e1.style.display = "flex";
+                e2.style.display = "none";
+                todolist[id_number-1].complete_value = false;
+            }else if(todolist[id_number-1].complete_value == false){
+                e1.style.display = "none";
+                e2.style.display = "flex";
+                todolist[id_number-1].complete_value = true;
+            }
+            e3.classList.toggle("toggle");
+
+            check_menu();
+        });
+
+        e4.addEventListener("click", function(){
+            const id_number = this.id.substring(this.id.length - 1)
+            const element = document.getElementById("task"+id_number);
+            element.remove();
+            const filter_element = todolist.filter(todolist => todolist.id != id_number);
+            todolist = filter_element;
+            num = 0
+            for (i in filter_element){
+                num = num + 1;
+                const taskid = document.querySelector("#task" + filter_element[i].id);
+                const emptyid = document.querySelector("#emptybox" + filter_element[i].id);
+                const checkid = document.querySelector("#checkbox" + filter_element[i].id);
+                const plineid = document.querySelector("#p-line" + filter_element[i].id);
+                const crossid = document.querySelector("#cross" + filter_element[i].id);
+                taskid.id = "task" + num;
+                emptyid.id = "emptybox" + num;
+                checkid.id = "checkbox" + num;
+                plineid.id = "p-line" + num;
+                crossid.id = "cross" + num;
+                todolist[i].id = parseInt(i)+1;
+            };
+            num_item();
+            check_menu();
+        });
+
         number_item();
         check_menu();
     }
@@ -125,12 +186,45 @@ textbox0.addEventListener("keypress", function(enter){
 function number_item(){
     num_item.innerText = todolist.length + " items left";
 };
-console.log("hello");
 
-const all = document.querySelector("#all");
-const active = document.querySelector("#active");
-const completed = document.querySelector("#completed");
-const clear = document.querySelector("#clear");
+function choice_menu(value_menu){
+    const all = document.querySelector("#all");
+    const active = document.querySelector("#active");
+    const completed = document.querySelector("#completed");
+    const clear = document.querySelector("#clear");
+    if (value_menu == "all" && mode == "white"){
+        all.className = 'all toggle';
+        active.className = 'active';
+        completed.className = 'completed';}
+    
+    else if (value_menu == "all" && mode == "dark"){
+            all.className = 'all toggle fonttogglemode';
+            active.className = 'active fonttogglemode';
+            completed.className = 'completed fonttogglemode';}
+
+    else if (value_menu == "active"  && mode == "white"){
+        all.className = 'all';
+        active.className = 'active toggle';
+        completed.className = 'completed';}
+    
+    else if (value_menu == "active"  && mode == "dark"){
+            all.className = 'all fonttogglemode';
+            active.className = 'active toggle fonttogglemode';
+            completed.className = 'completed fonttogglemode';}
+    
+    
+    else if (value_menu == "completed" && mode == "white"){
+        all.className = 'all';
+        active.className = 'active';
+        completed.className = 'completed toggle';
+    }
+
+    else if (value_menu == "completed" && mode == "dark"){
+        all.className = 'all fonttogglemode';
+        active.className = 'active fonttogglemode';
+        completed.className = 'completed toggle fonttogglemode';
+    };
+};
 
 function check_menu(){
     if (menu_filter == "all"){
@@ -144,13 +238,16 @@ function check_menu(){
 
 function all_filter_func(){
     menu_filter = "all";
+    choice_menu("all");
     for (i in todolist){
-        const element = document.getElementById("task"+todolist[i].id).style.display = "flex";
-    }
+        const element = document.getElementById("task"+todolist[i].id);
+        element.style.display = "flex";
+    };
 };
 
 function active_filter_func(){
     menu_filter = "active";
+    choice_menu("active");
     const filter_completed_true = todolist.filter(todolist => todolist.complete_value == false);
     for (i in filter_completed_true){
         const element = document.getElementById("task"+filter_completed_true[i].id).style.display = "flex";
@@ -163,6 +260,7 @@ function active_filter_func(){
 
 function completed_filter_func(){
     menu_filter = "completed";
+    choice_menu("completed");
     const filter_completed_true = todolist.filter(todolist => todolist.complete_value == true);
     if (filter_completed_true.length > 0){
         for (i in filter_completed_true){
@@ -182,7 +280,6 @@ active.addEventListener("click", active_filter_func);
 completed.addEventListener("click", completed_filter_func);
 
 clear.addEventListener("click", function(){
-    console.log("clear func");
     const filter_completed_true = todolist.filter(todolist => todolist.complete_value == true);
     for (i in filter_completed_true){
         const element = document.getElementById("task"+filter_completed_true[i].id);
@@ -198,8 +295,14 @@ clear.addEventListener("click", function(){
         num = num + 1;
         const taskid = document.querySelector("#task" + filter_completed_false[i].id);
         const emptyid = document.querySelector("#emptybox" + filter_completed_false[i].id);
+        const checkid = document.querySelector("#checkbox" + filter_completed_false[i].id);
+        const plineid = document.querySelector("#p-line" + filter_completed_false[i].id);
+        const crossid = document.querySelector("#cross" + filter_completed_false[i].id);
         taskid.id = "task" + num;
         emptyid.id = "emptybox" + num;
+        checkid.id = "checkbox" + num;
+        plineid.id = "p-line" + num;
+        crossid.id = "cross" + num;
         todolist[i].id = parseInt(i)+1;
     };
     number_item();

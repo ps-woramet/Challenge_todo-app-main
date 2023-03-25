@@ -16,7 +16,7 @@
     .attribution .fonttogglemode{color: white;}
     *{margin: 0;padding: 0; box-sizing: border-box;font-family: 'Josefin Sans', sans-serif;}
     p{
-      font-size: 0.75rem;
+      font-size:0.8rem;
       color: black;
     }
 
@@ -80,7 +80,6 @@
       z-index: 999;
       position: relative;
       width: 60%;
-      border: solid blue 1px;
       margin: 0 auto;
       margin-top: 10%;
     }
@@ -93,7 +92,7 @@
     }
 
     h1{
-      border: solid red 1px;
+      font-size: 50px;
       color: white;
     }
 
@@ -109,6 +108,19 @@
 
     .darkbox{
       background: hsl(235, 24%, 19%);
+    }
+
+    .whitecross, .darkcross{
+      position: absolute;
+      right: 5%;
+    }
+
+    .whitecross:hover, .darkcross:hover{
+      cursor: pointer;
+    }
+
+    .p-line.toggle{
+      text-decoration: line-through;
     }
 
     .flex{
@@ -142,6 +154,7 @@
     input{
       background: white;
       color: black;
+      font-size: 1rem;
     }
 
     input, .inputtogglemode, input:focus, .inputtogglemode:focus{
@@ -163,7 +176,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: solid red 1px;
     }
 
     footer .menu{
@@ -173,33 +185,31 @@
       gap: 5%;
     }
 
-
-    /* Drag and drop */
     .container > p{
       margin: 0 auto;
       margin-top: 5%;
-      border: 1px solid yellow;
       text-align: center;
+    }
+
+    .all.toggle, .active.toggle, .completed.toggle{
+      color: hsl(220, 98%, 61%);
     }
 
     #all:hover{
       cursor: pointer;
-      color: red;
     }
 
     #active:hover{
       cursor: pointer;
-      color: red;
     }
 
     #completed:hover{
       cursor: pointer;
-      color: red;
     }
 
     #clear:hover{
       cursor: pointer;
-      color: red;
+      color: hsl(220, 98%, 61%);
     }
 
     .sun{
@@ -210,12 +220,11 @@
       display: flex;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 650px) {
         footer .menu{
           position: absolute;
           margin-top: calc(90px + 5%);
           width: 100%;
-          /* top: 50%; */
           left: 50%;
           transform: translate(-50%, -50%);
           padding-left: 20%;
@@ -250,9 +259,9 @@
       <footer class="flex whitebox">
         <p id = "number-item">0 items left</p>
         <div class="menu whitebox">
-            <p id = "all">All</p>
-            <p id = "active">Active</p> 
-            <p id = "completed">Completed</p>
+            <p id = "all" class="all toggle">All</p>
+            <p id = "active" class="active">Active</p> 
+            <p id = "completed" class="completed">Completed</p>
         </div>
 
         <p id="clear">Clear Completed</p>
