@@ -174,7 +174,7 @@ textbox0.addEventListener("keypress", function(enter){
                 crossid.id = "cross" + num;
                 todolist[i].id = parseInt(i)+1;
             };
-            num_item();
+            number_item();
             check_menu();
         });
 
@@ -184,6 +184,8 @@ textbox0.addEventListener("keypress", function(enter){
 });
 
 function number_item(){
+    console.log(todolist)
+    console.log(todolist.length)
     num_item.innerText = todolist.length + " items left";
 };
 
