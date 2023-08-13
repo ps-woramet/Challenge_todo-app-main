@@ -135,6 +135,7 @@ textbox0.addEventListener("keypress", function(enter){
             const id_number = this.id.substring(this.id.length - 1)
             todolist[id_number-1].complete_value = false;
             check_menu();
+
         });
 
         e3.addEventListener("click", function(){
@@ -151,6 +152,7 @@ textbox0.addEventListener("keypress", function(enter){
             e3.classList.toggle("toggle");
 
             check_menu();
+
         });
 
         e4.addEventListener("click", function(){
@@ -174,19 +176,17 @@ textbox0.addEventListener("keypress", function(enter){
                 crossid.id = "cross" + num;
                 todolist[i].id = parseInt(i)+1;
             };
-            number_item();
+
             check_menu();
         });
 
-        number_item();
         check_menu();
     }
 });
 
-function number_item(){
-    console.log(todolist)
-    console.log(todolist.length)
-    num_item.innerText = todolist.length + " items left";
+function number_item(list){
+    let mylist = list;
+    num_item.innerText = mylist.length + " items left";
 };
 
 function choice_menu(value_menu){
@@ -245,6 +245,7 @@ function all_filter_func(){
         const element = document.getElementById("task"+todolist[i].id);
         element.style.display = "flex";
     };
+    number_item(todolist)
 };
 
 function active_filter_func(){
@@ -258,6 +259,7 @@ function active_filter_func(){
     for (i in filter_completed_false){
         const element = document.getElementById("task"+filter_completed_false[i].id).style.display = "none";
     };
+    number_item(filter_completed_true)
 };
 
 function completed_filter_func(){
@@ -275,6 +277,7 @@ function completed_filter_func(){
             const element = document.getElementById("task"+filter_completed_false[i].id).style.display = "none";
         };
     };
+    number_item(filter_completed_true)
 };
 
 all.addEventListener("click", all_filter_func);
@@ -307,7 +310,6 @@ clear.addEventListener("click", function(){
         crossid.id = "cross" + num;
         todolist[i].id = parseInt(i)+1;
     };
-    number_item();
-    check_menu();
+    check_menu(filter_completed_true);
 });
 
