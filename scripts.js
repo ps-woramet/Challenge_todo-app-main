@@ -1,3 +1,4 @@
+// toggle----------------------------------
 // <p class="a b">hello world</p>
 // const p_tag = document.querySelectorAll('p');
 // p_tag.forEach(e => e.classList.toggle("c"));
@@ -7,6 +8,12 @@
 // const p_tag = document.querySelectorAll('p');
 // p_tag.forEach(e => e.classList.toggle("c"));
 // <p class="a b">hello world</p>
+
+// replace----------------------------------
+// <p class="a b c">hello world</p>
+// p_tag = document.querySelectorAll('p');
+// p_tag.forEach(e => e.classList.replace('c', 'd'))
+// <p class="a b d">hello world</p>
 
 let mode = "white";
 
