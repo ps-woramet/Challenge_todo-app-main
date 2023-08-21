@@ -1,3 +1,13 @@
+// <p class="a b">hello world</p>
+// const p_tag = document.querySelectorAll('p');
+// p_tag.forEach(e => e.classList.toggle("c"));
+// <p class="a b c">hello world</p>
+
+// <p class="a b c">hello world</p>
+// const p_tag = document.querySelectorAll('p');
+// p_tag.forEach(e => e.classList.toggle("c"));
+// <p class="a b">hello world</p>
+
 let mode = "white";
 
 const sun = document.querySelector(".sun");
