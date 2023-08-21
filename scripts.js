@@ -15,6 +15,21 @@
 // p_tag.forEach(e => e.classList.replace('c', 'd'))
 // <p class="a b d">hello world</p>
 
+// <div class="contaniner1">
+//      <div class="container2">hello</div>
+// </div>
+// const contaniner1 = document.createElement('div');
+// contaniner1.classList.add('contaniner1');
+// const container2 = document.createElement('div');
+// container2.classList.add('container2');
+// สร้างองค์ประกอบ div และกำหนดเนื้อหาใน container2
+// const textNode = document.createTextNode('hello');
+// container2.appendChild(textNode);
+// เพิ่ม container2 เป็นลูกของ contaniner1
+// contaniner1.appendChild(container2);
+// เพิ่ม contaniner1 เป็นลูกของ body หรือตำแหน่งที่คุณต้องการ
+// document.body.appendChild(contaniner1);
+
 let mode = "white";
 
 const sun = document.querySelector(".sun");
